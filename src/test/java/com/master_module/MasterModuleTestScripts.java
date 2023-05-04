@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.BasePackage.TestActions;
 import com.BasePackage.TestBase;
 import com.UtilitiesClasses.Constants;
 import com.UtilitiesClasses.ExpectedValue;
@@ -47,8 +48,8 @@ public class MasterModuleTestScripts extends TestBase{
 	}
 	@Test(priority=1,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Airlines.",enabled=true)
 	public void verifyAirline_Create_View_ExportAs_Edit_Filter() throws InterruptedException  {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-		adminLogin();
+		
+	    adminLogin();
 		airline = new AirLinePageObject(driver);
 		airline.clickOnMasterModule();
 		airline.clickOnAirlineCard();
@@ -115,6 +116,7 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.adminCardText,airline.isAdminCardTextDisplayed());
 		airline.clickOnAirlineCard();
 		Assert.assertEquals(ExpectedValue.airlinesText,airline.isAirlinesTextDispleyed());
+		TestActions.wait();
 		//Thread.sleep(2000);
 		airline.clickOnViewIcon();
 		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed()); 

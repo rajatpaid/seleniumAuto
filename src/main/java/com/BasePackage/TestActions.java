@@ -5,13 +5,17 @@ import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.util.Assert;
+import com.google.common.base.Predicate;
 
 
 
@@ -93,7 +97,22 @@ public class TestActions {
 		return randomInt;
 	}
 
+	public static void waitForPageLoad(WebDriver driver) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
+	    Predicate<WebDriver> pageLoaded = new Predicate<WebDriver>() {
 
+	        @Override
+	        public boolean apply(WebDriver input) {
+	            return ((JavascriptExecutor) input).executeScript("return document.readyState").equals("complete");
+	        }
 
+	    };
+	    wait.until(pageLoaded);
+	}
+
+	public static void wait(WebDriver driver) {
+		ChromeOptions x=new ChromeOptions();
+		x.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+	}
 }

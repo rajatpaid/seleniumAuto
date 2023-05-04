@@ -34,10 +34,6 @@ public class TestBase {
 		
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-//		
-//		System.setProperty("webdriver.chrome.driver","C:/Users/OWNER/eclipse-workspace/FSS_Frieght_Adda/Drivers/chromedriver.exe");
-//		 driver=new ChromeDriver(); 
-//		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		
 		/*
 		 * WebDriverManager.edgedriver().setup(); WebDriver driver = new EdgeDriver();
@@ -58,7 +54,7 @@ public class TestBase {
 	}
 //	@AfterTest 
 //	public void tearDown() {
-//	driver.close();
+//		driver.close();
 //
 //	}
 

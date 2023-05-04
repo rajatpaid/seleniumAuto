@@ -8,11 +8,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.BasePackage.TestActions;
+import com.UtilitiesClasses.Constants;
+
+
 
 
 
 public class AdminSignInPageObjects extends TestActions {
 	WebDriver driver;
+	AdminSignInPageObjects signinpage;
 	Logger log = Logger.getLogger(AdminSignInPageObjects.class);
 
 	public AdminSignInPageObjects(WebDriver driver) {
@@ -171,6 +175,12 @@ public class AdminSignInPageObjects extends TestActions {
 		this.waitForEle(comany_name);
 		String companyName= comany_name.getText();
 		return companyName;	
+	}
+	public void adminLogin() {
+	    
+		signinpage.enterAdminUsername(Constants.adminUsername); 
+		signinpage.enterAdminPassword(Constants.adminPassword); 
+		signinpage.clickOnLoginButton(); 	 
 	}
 }
 

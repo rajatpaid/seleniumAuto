@@ -6,7 +6,7 @@
       <class name="com.master_module.MasterModuleTestScripts">
         <methods>
           <include name="initializeChrome"/>
-          <include name="verifyCustomer_Create_View_ExportAs_Edit_Filter"/>
+          <include name="verifyNavigateFunctionalityInAirlines"/>
         </methods>
       </class> <!-- com.master_module.MasterModuleTestScripts -->
     </classes>
