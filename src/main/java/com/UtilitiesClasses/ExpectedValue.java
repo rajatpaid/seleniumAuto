@@ -30,14 +30,15 @@ public class ExpectedValue {
 	public static final String airlineDetailsText = "Airline Details";
 	public static final String airlinesText = "Airlines";
 	public static final String airlineCreateText = "Airline Create";
+	public static final String airlineLinkText = "Airlines";
+	public static final String airlineUpadteText = "Airline Update";
 	public static final String airlineNameText = "Name";
 	public static final String airlineiataText = "IATA";
 	public static final String airlineiacoText = "ICAO";
 	public static final String airlineAliasText = "Alias";
 	public static final String airlineCallsignText = "Callsign";
 	public static final String airlineCountryText = "Country";
-	public static final String airlineLinkText = "Airlines";
-	public static final String airlineUpadteText = "Airline Update";
+	
 	//Branches Card Page Expected text 
 	public static final String branchesLinkText = "Branches";
 	public static final String branchesText = "Branches";
@@ -54,8 +55,12 @@ public class ExpectedValue {
 	public static final String branchAddressText  = "Address";
 	public static final String branchAddAddressButtonText  = "Add Address";
 	
-	
-	
+	//customer
+	public static final String customerDetailsText = "Customer Details";
+	public static final String customerText = "Customer";
+	public static final String customerCreateText = "Customer Create";
+	public static final String customerLinkText = "Customer";
+	public static final String customerUpadteText = "Customer Update";
 	
 	/*public static final String admincardtext = "Admin Card";
 	public static final String chargetypedetailstext = "Charge Type Details";

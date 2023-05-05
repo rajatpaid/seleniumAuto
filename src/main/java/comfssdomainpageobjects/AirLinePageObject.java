@@ -167,39 +167,48 @@ public class AirLinePageObject extends TestActions {
 		this.click(masterLinkOnBreadcrumb);
 	}
 	
-	public void selectEXCELOptionFromDropdown()  {
+	public void downloadAirlineInEXCEL()  {
 		this.click(exportAs);
 		this.click(excel);
 		this.click(excelgeneratedSuccessfully_Message);
 	}
 	
-	public void selectCSVOptionFromDropdown() throws InterruptedException {
+	public void downloadAirlineInCSV() throws InterruptedException {
 		this.click(exportAs);
 		this.click(csv);
 		this.click(csvgeneratedSuccessfully_Message);
 	}
-	
 	public void clickOnViewIcon(){
 		this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
 	public void clickOnEditIcon(){
-		this.waitForEle(editIcon);
 		this.click(editIcon);
 		this.click(acceptAlert);
 }
 	
-	public void clickOnFilterButton() {
-		this.click(filter_button);
-}
-	
-	public void clickOnUpdateButton() {
+	public void viewAirline(){
+		this.waitForEle(viewIcon);
+		this.click(viewIcon);
+		this.click(acceptAlert);	
+	}
+	public  void editAirline(String iata){
+		this.waitForEle(editIcon);
+		this.click(editIcon);
+		this.click(acceptAlert);
+		airline_iata.click();
+		airline_iata.clear();
+	    this.sendkeys(airline_iata,iata);
 		this.click(update_button);
 }
-	public void clickOnReloadSymbol() {
+	public void filterAirline(String name) {
+		this.click(filter_button);
+		this.sendkeys(airlineNameOnFilter, name);
+		this.click(okFilter);
 		this.click(reloadSymbol);
 	}
+	
 	
 	public void clickOnSaveButton() {
 		this.click(save_button);
@@ -211,16 +220,9 @@ public class AirLinePageObject extends TestActions {
 		this.click(closeButton);
 	}
 	
-	public void updateAirlineDetails(){	
-		this.click(editIcon);
-		this.click(acceptAlert);
-		this.sendkeys(airline_icao, "ERD");	
-	}
+	
 
-	public void enterAirlineNameOnFilterAndClickOnOK(String filtername) {
-		this.sendkeys(airlineNameOnFilter, filtername);
-		this.click(okFilter);
-	}
+	
 	
 	public String isAdminCardTextDisplayed() {
 		String admincardText=admin_cardText.getText();

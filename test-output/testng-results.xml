@@ -2,19 +2,19 @@
 <testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-04T17:01:57 IST" name="Default suite" finished-at="2023-05-04T17:02:25 IST" duration-ms="27872">
+  <suite started-at="2023-05-05T16:41:00 IST" name="Default suite" finished-at="2023-05-05T16:41:29 IST" duration-ms="29184">
     <groups>
     </groups>
-    <test started-at="2023-05-04T17:01:57 IST" name="Default test" finished-at="2023-05-04T17:02:25 IST" duration-ms="27872">
+    <test started-at="2023-05-05T16:41:00 IST" name="Default test" finished-at="2023-05-05T16:41:29 IST" duration-ms="29184">
       <class name="com.master_module.MasterModuleTestScripts">
-        <test-method is-config="true" signature="initializeChrome()[pri:0, instance:com.master_module.MasterModuleTestScripts@3527942a]" started-at="2023-05-04T17:01:57 IST" name="initializeChrome" finished-at="2023-05-04T17:01:59 IST" duration-ms="2195" status="PASS">
+        <test-method is-config="true" signature="initializeChrome()[pri:0, instance:com.master_module.MasterModuleTestScripts@272113c4]" started-at="2023-05-05T16:41:00 IST" name="initializeChrome" finished-at="2023-05-05T16:41:03 IST" duration-ms="3089" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializeChrome -->
-        <test-method signature="verifyAdminLoginPage()[pri:0, instance:com.master_module.MasterModuleTestScripts@3527942a]" started-at="2023-05-04T17:02:00 IST" name="verifyAdminLoginPage" description="This testcase verifies login functionality" finished-at="2023-05-04T17:02:25 IST" duration-ms="25636" status="PASS">
+        <test-method signature="verifyNavigateFunctionalityInCustomer()[pri:6, instance:com.master_module.MasterModuleTestScripts@272113c4]" started-at="2023-05-05T16:41:04 IST" name="verifyNavigateFunctionalityInCustomer" description="This testcase verifies Admin is able to Navigate to the  Admin Card Page &amp; Customer Page from Customer Create, Customer Details and Customer Update Pages." finished-at="2023-05-05T16:41:29 IST" duration-ms="25971" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyAdminLoginPage -->
+        </test-method> <!-- verifyNavigateFunctionalityInCustomer -->
       </class> <!-- com.master_module.MasterModuleTestScripts -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

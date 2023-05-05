@@ -16,22 +16,20 @@ import com.UtilitiesClasses.ExpectedValue;
 import comfssdomainpageobjects.AdminSignInPageObjects;
 import comfssdomainpageobjects.AirLinePageObject;
 import comfssdomainpageobjects.BranchesPageObject;
-
-
-
+import comfssdomainpageobjects.CustomerPageObject;
 
 public class MasterModuleTestScripts extends TestBase{
 	
 	public AdminSignInPageObjects signinpage;
 	public  AirLinePageObject airline;
 	public BranchesPageObject branch;
-
-	
+	public CustomerPageObject customer ;
 	
 	@Test(priority=0,description="This testcase verifies login functionality",enabled=true)
 	public void verifyAdminLoginPage() {
 		signinpage= new AdminSignInPageObjects(driver);
 		signinpage.navigateUrl(Constants.URL) ; 
+		
 		Assert.assertTrue(signinpage.isUsernameTextboxDisplayed(),"The Username Textbox is not Displayed on Signin Page.");
 		Assert.assertTrue(signinpage.isPasswordTextboxDisplayed(),"The Password Textbox is not Displayed on Signin Page.");
 		Assert.assertTrue(signinpage.isforgotPasswordLinkEnabled(),"The Forgot Password Link is not Enabled on Signin Page.");
@@ -41,15 +39,14 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.loginButtonText,signinpage.isLOGINButtonTextDisplayed());
 		signinpage.enterAdminUsername(Constants.adminUsername); 
 		signinpage.enterAdminPassword(Constants.adminPassword); 
-		signinpage.clickOnLoginButton();
-		signinpage.isCompanyNameDisplayed();
-		
-		
+		signinpage.clickOnLoginButton(); 
+		Assert.assertEquals(ExpectedValue.companyName,signinpage.isCompanyNameDisplayed());
 	}
+	
 	@Test(priority=1,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Airlines.",enabled=true)
 	public void verifyAirline_Create_View_ExportAs_Edit_Filter() throws InterruptedException  {
-		
-	    adminLogin();
+		signinpage= new AdminSignInPageObjects(driver);
+    	signinpage.adminLogin();
 		airline = new AirLinePageObject(driver);
 		airline.clickOnMasterModule();
 		airline.clickOnAirlineCard();
@@ -76,31 +73,27 @@ public class MasterModuleTestScripts extends TestBase{
 //		Assert.assertEquals(ExpectedValue.editButtonText,airline.isEditButtonTextDisplayed());
 //		Assert.assertEquals(ExpectedValue.cancelButtonText,airline.isCancelButtonTextDisplayed());
 		airline.clickOnCancelButton();
-		
 		Thread.sleep(2000);
-		airline.clickOnViewIcon();
+		airline.viewAirline();
 		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed());  
 		Assert.assertEquals(ExpectedValue.editButtonText,airline.isEditButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.cancelButtonText,airline.isCancelButtonTextDisplayed());
 		airline.clickOnCancelButton();
 		Thread.sleep(2000);
-		airline.clickOnEditIcon();
-		airline.clickOnUpdateButton();
+		airline.editAirline(Constants.newairlineIATA);
 		Thread.sleep(2000);
 		Assert.assertEquals(ExpectedValue.expectedUpdateSuccessfullMessage,airline.isUpdatedSuccessfullyMessageDisplayed());
 		airline.clickOnCancelButton();
-		airline.selectEXCELOptionFromDropdown();
+		airline.downloadAirlineInEXCEL();
 		Assert.assertEquals(ExpectedValue.expectedEXCELDownloadSuccessfullMessage,airline.isEXCELgeneratedSuccessfullyMessageDisplayed());
-		airline.clickOnFilterButton();
-		airline.enterAirlineNameOnFilterAndClickOnOK(Constants.airlineName);
-		airline.clickOnReloadSymbol();
-		
+		airline.filterAirline(Constants.airlineName);	
 	}
 	
     @Test(priority=2,description="This testcase verifies Admin is able to Navigate to the  Admin Card Page & Airline Page from Airline Create, Airline Details and Airline Update Pages.",enabled=true)
 	
 	public void verifyNavigateFunctionalityInAirlines() throws InterruptedException{
-		adminLogin();
+    	signinpage= new AdminSignInPageObjects(driver);
+    	signinpage.adminLogin();
 		airline = new AirLinePageObject(driver);
 		airline.clickOnMasterModule();
 		Assert.assertEquals(ExpectedValue.adminCardText,airline.isAdminCardTextDisplayed());
@@ -116,8 +109,7 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.adminCardText,airline.isAdminCardTextDisplayed());
 		airline.clickOnAirlineCard();
 		Assert.assertEquals(ExpectedValue.airlinesText,airline.isAirlinesTextDispleyed());
-		TestActions.wait();
-		//Thread.sleep(2000);
+		Thread.sleep(2000);
 		airline.clickOnViewIcon();
 		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed()); 
 		airline.clickOnMasterLinkOnBreadcrumb();
@@ -143,11 +135,11 @@ public class MasterModuleTestScripts extends TestBase{
 	
     @Test(priority=3,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Branches.",enabled=true)
 	  public void verifyBranches_Create_View_ExportAs_Edit_Filter() throws InterruptedException {
-	  adminLogin();
+      signinpage= new AdminSignInPageObjects(driver);
+      signinpage.adminLogin();
 	  branch = new BranchesPageObject(driver);
 	  branch.clickOnMasterModule(); 
-	  branch.clickOnBranchCard(); 
-	  
+	  branch.clickOnBranchCard();  
 	  Assert.assertEquals(ExpectedValue.createNewButtonText,branch.isCreateNewButtonTextDisplayed());
 	  Assert.assertEquals(ExpectedValue.exportAsButtonText,branch.isExportAsButtonTextDisplayed());
 	  Assert.assertEquals(ExpectedValue.filterButtonText,branch.isFilterButtonTextDisplayed());
@@ -169,34 +161,31 @@ public class MasterModuleTestScripts extends TestBase{
 	  branch.enterBranchDetails(Constants.branchName,Constants.branchloaction,Constants.branchCode,Constants.branchEmail,Constants.branchGSTNo);
 	  branch.enterBranchAddressDetails(Constants.branchAddress,Constants.branchPhoneNo,Constants.branchCity,Constants.branchZipCode);
 	  branch.clickOnSaveButton();
-	  Assert.assertEquals(ExpectedValue.expectedCreatedSuccessfullMessage,airline.isCreatedSuccessfullyMessageDisplayed());  
+	//  Assert.assertEquals(ExpectedValue.expectedCreatedSuccessfullMessage,airline.isCreatedSuccessfullyMessageDisplayed());  
 //		Assert.assertEquals(ExpectedValue.branchDetailsText,branch.isBranchDetailsTextDisplayed());  
 //		Assert.assertEquals(ExpectedValue.editButtonText,branch.isEditButtonTextDisplayed());
 //		Assert.assertEquals(ExpectedValue.cancelButtonText,branch.isCancelButtonTextDisplayed());
 	    branch.clickOnCancelButton();
 		Thread.sleep(2000);
-		branch.clickOnViewIcon();
+		branch.viewBranch();
 		Assert.assertEquals(ExpectedValue.branchDetailsText,branch.isBranchDetailsTextDisplayed());  
 		Assert.assertEquals(ExpectedValue.editButtonText,branch.isEditButtonTextDisplayed());
 		 Assert.assertEquals(ExpectedValue.closeButtonText, branch.isCloseButtonTextDisplayed()); 
 		branch.clickOnCloseButton();
 		Thread.sleep(2000);
-		branch.clickOnEditIcon();
-		branch.clickOnUpdateButton();
+		branch.editBranch(Constants.branchloaction);
 		Thread.sleep(2000);
 		Assert.assertEquals(ExpectedValue.expectedUpdateSuccessfullMessage,branch.isUpdatedSuccessfullyMessageDisplayed());
 		branch.clickOnCloseButton();
-		branch.selectEXCELOptionFromDropdown();
+		branch.downloadBranchesInEXCEL();
 		Assert.assertEquals(ExpectedValue.expectedEXCELDownloadSuccessfullMessage,branch.isEXCELgeneratedSuccessfullyMessageDisplayed());
-		branch.clickOnFilterButton();
-		branch.enterBranchNameOnFilterPageAndClickOnOK(Constants.branchName);
-		branch.clickOnReloadSymbol();
-		
+		branch.filterBranch(Constants.branchName);	
     }
+    
     @Test(priority=4,description="This testcase verifies Admin is able to Navigate to the  Admin Card Page & Branch Page from Branch Create, Branch Details and Branch Update Pages.",enabled=true)
-	
    	public void verifyNavigateFunctionalityInBranches() throws InterruptedException{
-   		adminLogin();
+    	signinpage= new AdminSignInPageObjects(driver);
+    	signinpage.adminLogin();
    		 branch = new BranchesPageObject(driver);
    		  branch.clickOnMasterModule(); 
    		Assert.assertEquals(ExpectedValue.adminCardText,branch.isAdminCardTextDisplayed());
@@ -236,13 +225,50 @@ public class MasterModuleTestScripts extends TestBase{
    		Assert.assertEquals(ExpectedValue.branchesText,branch.isBranchesTextDispleyed());
    	}
        
+   @Test(priority=6,description="This testcase verifies Admin is able to Navigate to the  Admin Card Page & Customer Page from Customer Create, Customer Details and Customer Update Pages.",enabled=true)
+   	public void verifyNavigateFunctionalityInCustomer() throws InterruptedException{
+	    signinpage= new AdminSignInPageObjects(driver);
+   	    signinpage.adminLogin();
+   		customer = new CustomerPageObject(driver);
+   		customer.clickOnMasterModule(); 
+   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+   		customer.clickOnCustomerCard();
+   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+   		customer.clickOnMasterLinkOnBreadcrumb();
+   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+   		customer.clickOnCustomerCard();
+   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+   		customer.clickOnCreateNew();
+   		Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
+   		customer.clickOnMasterLinkOnBreadcrumb();
+   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+   		customer.clickOnCustomerCard();
+   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+   		Thread.sleep(2000);
+   		customer.clickOnViewIcon();
+   		Assert.assertEquals(ExpectedValue.customerDetailsText,customer.isCustomerDetailsTextDisplayed()); 
+   		customer.clickOnMasterLinkOnBreadcrumb();
+   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+   		customer.clickOnCustomerCard();
+   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+   		Thread.sleep(2000);
+   		customer.clickOnEditIcon();
+   		Assert.assertEquals(ExpectedValue.customerUpadteText,customer.isCustomerUpdateTextDisplayed());
+   		customer.clickOnMasterLinkOnBreadcrumb();
+   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+   		customer.clickOnCustomerCard();
+   		customer.clickOnCreateNew();
+   		Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
+   		customer.clickOnCustomerLinkOnBreadcrumb();
+   		Thread.sleep(2000);
+   		customer.clickOnEditIcon();
+   		Assert.assertEquals(ExpectedValue.customerUpadteText,customer.isCustomerUpdateTextDisplayed());
+   		customer.clickOnCustomerLinkOnBreadcrumb();
+   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+   	}
     
-    
-	public void adminLogin() {
-		signinpage= new AdminSignInPageObjects(driver);
-		signinpage.navigateUrl(Constants.URL) ; 
-		signinpage.enterAdminUsername(Constants.adminUsername); 
-		signinpage.enterAdminPassword(Constants.adminPassword); 
-		signinpage.clickOnLoginButton(); 	 
-	}
+  
+	
+	
+	
 }

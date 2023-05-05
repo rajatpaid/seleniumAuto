@@ -5,16 +5,17 @@ package com.UtilitiesClasses;
 public class Constants {
 	 public static final String URL = "http://app-lb-926247714.ap-south-1.elb.amazonaws.com/\r\n"+ "";
      public static final String ExpectedEmailText="Adming@gmail.com";
-     public static final String adminUsername = "ramesh";
-     public static final String adminPassword = "ramesh";
-//     public static final String adminUsername = "Adming";
- //    public static final String adminPassword = "Adming";
+//     public static final String adminUsername = "ramesh";
+//     public static final String adminPassword = "ramesh";
+     public static final String adminUsername = "Adming";
+     public static final String adminPassword = "Adming";
      public static final String ExpectedadminroleText = "admin";
      public static final String ExpectedusernameText = "Adming Jadhav";
      
     		//Airline details 
      public static final String airlineName = "Indigo airline";
      public static final String airlineIATA = "VMO";
+     public static final String newairlineIATA = "AAA";
      public static final String airlineICAO = "VAM";
      public static final String airlineAlias="";
      public static final String airlineCallsign="";
@@ -33,7 +34,8 @@ public class Constants {
  	public static final String branchPhoneNo ="9876898765";
      //
  	
-    
+ 	public static final String customerName ="KELVIN EXPORTS";
+ 	 public static final String mobileNo = "9866543672";
     /* public static final String ExpectedadminroleText = "admin";
      public static final String ExpectedusernameText = "ramesh kk";
      public static final String airlinename = "Indigo airline";

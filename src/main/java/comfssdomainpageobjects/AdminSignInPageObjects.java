@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import com.BasePackage.TestActions;
 import com.UtilitiesClasses.Constants;
@@ -176,11 +177,13 @@ public class AdminSignInPageObjects extends TestActions {
 		String companyName= comany_name.getText();
 		return companyName;	
 	}
+	
+	
 	public void adminLogin() {
-	    
-		signinpage.enterAdminUsername(Constants.adminUsername); 
-		signinpage.enterAdminPassword(Constants.adminPassword); 
-		signinpage.clickOnLoginButton(); 	 
+		navigateUrl(Constants.URL) ; 
+		enterAdminUsername(Constants.adminUsername); 
+		enterAdminPassword(Constants.adminPassword); 
+		clickOnLoginButton(); 	 
 	}
 }
 

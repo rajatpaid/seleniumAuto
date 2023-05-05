@@ -219,13 +219,13 @@ public class BranchesPageObject extends TestActions {
 		this.click(masterLinkOnBreadcrumb);
 	}
 	
-	public void selectEXCELOptionFromDropdown() {
+	public void downloadBranchesInEXCEL()  {
 		this.click(exportAs);
 		this.click(excel);
 		this.click(excelgeneratedSuccessfully_Message);
 	}
 	
-	public void selectCSVOptionFromDropdown() {
+	public void downloadBranchesInCSV() throws InterruptedException {
 		this.click(exportAs);
 		this.click(csv);
 		this.click(csvgeneratedSuccessfully_Message);
@@ -236,26 +236,29 @@ public class BranchesPageObject extends TestActions {
 		this.click(acceptAlert);
 	}
 	
+	
 	public void clickOnEditIcon() {
 		this.click(editIcon);
 		this.click(acceptAlert);
     }
-	
-	public void clickOnFilterButton() {
-		this.click(filter_button);
-   }
-	
-	
-	public void clickOnUpdateButton() {
+	public void viewBranch(){
+		this.waitForEle(viewIcon);
+		this.click(viewIcon);
+		this.click(acceptAlert);	
+	}
+	public  void editBranch(String code){
+		this.waitForEle(editIcon);
+		this.click(editIcon);
+		this.click(acceptAlert);
+		branch_location.click();
+		branch_location.clear();
+	    this.sendkeys(branch_location,code);
 		this.click(update_button);
-     }
-
-	public void enterBranchNameOnFilterPageAndClickOnOK(String name) {
+}
+	public void filterBranch(String name) {
+		this.click(filter_button);
 		this.sendkeys(branchNameOnFilterPage, name);
 		this.click(okFilter);
-	}
-	
-	public void clickOnReloadSymbol() {
 		this.click(reloadSymbol);
 	}
 	

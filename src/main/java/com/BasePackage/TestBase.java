@@ -42,11 +42,11 @@ public class TestBase {
 		 * driver.manage().window().maximize();
 		 */
 	}
-	@Test
-	public void test()  {
-		driver.get("http://20.219.229.2:3000/");
-		driver.findElement(By.xpath("//button[@class='dropdown-toggle btn btn-secondary']")).click();
-	}
+//	@Test
+//	public void test()  {
+//		driver.get("http://20.219.229.2:3000/");
+//		driver.findElement(By.xpath("//button[@class='dropdown-toggle btn btn-secondary']")).click();
+//	}
 	public void failed() throws IOException {
 
 		File scrfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
