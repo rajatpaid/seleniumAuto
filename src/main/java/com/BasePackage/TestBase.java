@@ -13,7 +13,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -25,7 +27,7 @@ public class TestBase {
 	public static  WebDriver driver;
 
 
-	@BeforeTest
+	@BeforeMethod
 	public void initializeChrome() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions option=new ChromeOptions ();
@@ -52,10 +54,10 @@ public class TestBase {
 		File scrfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrfile, new File("C:\\Users\\naras\\eclipse-workspace\\Product_Frieght_Adda\\test-output\\screnshots\\screenshot1.jpg"));
 	}
-//	@AfterTest 
-//	public void tearDown() {
-//		driver.close();
-//
-//	}
+	@AfterMethod
+	public void tearDown() {
+		driver.close();
+
+	}
 
 }

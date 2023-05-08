@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Master Module Test Suite">
-<listeners>
-<listener class-name ="com.UtilitiesClasses.ExtentListener">
-</listener>
-</listeners>
   <test  name="Master Module Test">
     <classes>
       <class name="com.master_module.MasterModuleTestScripts">
-      <methods>
-      <include name="verifyAdminLoginPage"/>
-       <include name="verifyAirlineCreateViewExportAsEditFilter"/>
-      </methods>
+     
        </class>
     </classes>
-  </test> 
-</suite> 
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

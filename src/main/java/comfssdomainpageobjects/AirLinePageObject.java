@@ -150,15 +150,17 @@ public class AirLinePageObject extends TestActions {
 	@FindBy(id="airlineName[airlineName]")
 	public WebElement airlineNameOnFilter;
 
-	
-	public void clickOnAirlineCard() {
-		this.click(airline_Card);
-	}
-	
 	public void clickOnMasterModule() {
 		this.click(master_Module);
 	}
-
+	public void clickOnAirlineCard() {
+		this.click(airline_Card);
+	}
+	public void openAirlineCard() {
+		this.click(master_Module);
+		this.click(airline_Card);
+	}
+	
 	public void clickOnCreateNew() {
 		this.click(createNew);
 	}
@@ -178,22 +180,26 @@ public class AirLinePageObject extends TestActions {
 		this.click(csv);
 		this.click(csvgeneratedSuccessfully_Message);
 	}
-	public void clickOnViewIcon(){
+	public void clickOnViewIcon() throws InterruptedException{
+		Thread.sleep(2000);
 		this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
-	public void clickOnEditIcon(){
+	public void clickOnEditIcon() throws InterruptedException{
+		Thread.sleep(2000);
 		this.click(editIcon);
 		this.click(acceptAlert);
 }
 	
-	public void viewAirline(){
+	public void viewAirline() throws InterruptedException{
+		Thread.sleep(2000);
 		this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
-	public  void editAirline(String iata){
+	public  void editAirline(String iata) throws InterruptedException{
+		Thread.sleep(2000);
 		this.waitForEle(editIcon);
 		this.click(editIcon);
 		this.click(acceptAlert);
@@ -201,6 +207,7 @@ public class AirLinePageObject extends TestActions {
 		airline_iata.clear();
 	    this.sendkeys(airline_iata,iata);
 		this.click(update_button);
+		Thread.sleep(2000);
 }
 	public void filterAirline(String name) {
 		this.click(filter_button);
@@ -210,9 +217,7 @@ public class AirLinePageObject extends TestActions {
 	}
 	
 	
-	public void clickOnSaveButton() {
-		this.click(save_button);
-	} 
+	
 	public void clickOnCancelButton() {
 		this.click(cancel_button);
 	}
@@ -360,7 +365,7 @@ public class AirLinePageObject extends TestActions {
 		return airlinedupadatetext;
 	}
 	
-	public void enterAirlineDetails(String name, String iatacode, String icaocode,String callsign, String alias) {
+	public void createAirline(String name, String iatacode, String icaocode,String callsign, String alias) {
 		this.sendkeys(airline_name, name);
 		this.sendkeys(airline_iata, iatacode);
 		this.sendkeys(airline_icao, icaocode);
@@ -368,6 +373,8 @@ public class AirLinePageObject extends TestActions {
 		this.sendkeys(airline_Callsign, alias);
 		this.click(country_dropdown);
 		this.click(country_India);
+		this.click(save_button);
+		
 	}
 
 	

@@ -44,12 +44,11 @@ public class MasterModuleTestScripts extends TestBase{
 	}
 	
 	@Test(priority=1,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Airlines.",enabled=true)
-	public void verifyAirline_Create_View_ExportAs_Edit_Filter() throws InterruptedException  {
+	public void verifyAirlineCreateViewExportAsEditFilter() throws InterruptedException  {
 		signinpage= new AdminSignInPageObjects(driver);
     	signinpage.adminLogin();
 		airline = new AirLinePageObject(driver);
-		airline.clickOnMasterModule();
-		airline.clickOnAirlineCard();
+		airline.openAirlineCard();
 		Assert.assertEquals(ExpectedValue.createNewButtonText,airline.isCreateNewButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.exportAsButtonText,airline.isExportAsButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.filterButtonText,airline.isFilterButtonTextDisplayed());
@@ -65,23 +64,20 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.airlineCallsignText,airline.isCallsignTextDisplayed());
 		Assert.assertEquals(ExpectedValue.saveButtonText,airline.isSaveButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.cancelButtonText,airline.isCancelButtonTextDisplayed());
-		airline.enterAirlineDetails(Constants.airlineName, Constants.airlineIATA, Constants.airlineICAO,Constants.airlineCallsign, Constants.airlineAlias);
-		airline.clickOnSaveButton();
+		airline.createAirline(Constants.airlineName, Constants.airlineIATA, Constants.airlineICAO,Constants.airlineCallsign, Constants.airlineAlias);
+	
 		//CreatedSuccessfully 
 //		Assert.assertEquals(ExpectedValue.expectedCreatedSuccessfullMessage,airline.isCreatedSuccessfullyMessageDisplayed());  
 //		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed());  
 //		Assert.assertEquals(ExpectedValue.editButtonText,airline.isEditButtonTextDisplayed());
 //		Assert.assertEquals(ExpectedValue.cancelButtonText,airline.isCancelButtonTextDisplayed());
 		airline.clickOnCancelButton();
-		Thread.sleep(2000);
 		airline.viewAirline();
 		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed());  
 		Assert.assertEquals(ExpectedValue.editButtonText,airline.isEditButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.cancelButtonText,airline.isCancelButtonTextDisplayed());
 		airline.clickOnCancelButton();
-		Thread.sleep(2000);
 		airline.editAirline(Constants.newairlineIATA);
-		Thread.sleep(2000);
 		Assert.assertEquals(ExpectedValue.expectedUpdateSuccessfullMessage,airline.isUpdatedSuccessfullyMessageDisplayed());
 		airline.clickOnCancelButton();
 		airline.downloadAirlineInEXCEL();
@@ -109,14 +105,13 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.adminCardText,airline.isAdminCardTextDisplayed());
 		airline.clickOnAirlineCard();
 		Assert.assertEquals(ExpectedValue.airlinesText,airline.isAirlinesTextDispleyed());
-		Thread.sleep(2000);
 		airline.clickOnViewIcon();
 		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed()); 
 		airline.clickOnMasterLinkOnBreadcrumb();
 		Assert.assertEquals(ExpectedValue.adminCardText,airline.isAdminCardTextDisplayed());
 		airline.clickOnAirlineCard();
 		Assert.assertEquals(ExpectedValue.airlinesText,airline.isAirlinesTextDispleyed());
-		Thread.sleep(2000);
+		
 		airline.clickOnEditIcon();
 		Assert.assertEquals(ExpectedValue.airlineUpadteText,airline.isAirLineUpdateTextDisplayed());
 		airline.clickOnMasterLinkOnBreadcrumb();
@@ -126,7 +121,6 @@ public class MasterModuleTestScripts extends TestBase{
 		airline.clickOnCreateNew();
 		Assert.assertEquals(ExpectedValue.airlineCreateText,airline.isAirlineCreateTextDispleyed());
 		airline.clickOnAirlinesLinkOnBreadcrumb();
-		Thread.sleep(2000);
 		airline.clickOnEditIcon();
 		Assert.assertEquals(ExpectedValue.airlineUpadteText,airline.isAirLineUpdateTextDisplayed());
 		airline.clickOnAirlinesLinkOnBreadcrumb();
@@ -134,7 +128,7 @@ public class MasterModuleTestScripts extends TestBase{
 	}
 	
     @Test(priority=3,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Branches.",enabled=true)
-	  public void verifyBranches_Create_View_ExportAs_Edit_Filter() throws InterruptedException {
+	  public void verifyBranchesCreateViewExportAsEditFilter() throws InterruptedException {
       signinpage= new AdminSignInPageObjects(driver);
       signinpage.adminLogin();
 	  branch = new BranchesPageObject(driver);
@@ -266,9 +260,34 @@ public class MasterModuleTestScripts extends TestBase{
    		customer.clickOnCustomerLinkOnBreadcrumb();
    		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
    	}
+   
+   @Test(priority=7,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Customer.",enabled=true)
+	  public void verifyCustomer_Create_View_ExportAs_Edit_Filter() throws InterruptedException {
+	   signinpage= new AdminSignInPageObjects(driver);
+  	   signinpage.adminLogin();
+	  customer = new CustomerPageObject(driver);
+	  customer.clickOnMasterModule(); 
+	  customer.clickOnCustomerCard(); 
+	  
+	  Assert.assertEquals(ExpectedValue.createNewButtonText,customer.isCreateNewButtonTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.exportAsButtonText,customer.isExportAsButtonTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.filterButtonText,customer.isFilterButtonTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.masterlinkText,customer.isMasterLinkTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.customerLinkText,customer.isCustomerLinkTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+	  customer.clickOnCreateNew();
+	  Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
+	  Assert.assertEquals(ExpectedValue.saveButtonText,customer.isSaveButtonTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.cancelButtonText,customer.isCancelButtonTextDisplayed());
+	  customer.enterClientdetails(Constants.clientName, Constants.natureOfBussiness, Constants.commodity, Constants.creditedLimit , 
+			  Constants.paymentTerm,Constants.email, Constants.faxNo, Constants.website, Constants.vatNo, Constants.mobileNo, 
+			  Constants.gstNo, Constants.remark, Constants.iecCODE);
+	 
+	  
+	
     
   
 	
 	
-	
+   }	
 }

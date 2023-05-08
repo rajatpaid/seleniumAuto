@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
+<testng-results ignored="6" total="7" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-05T16:41:00 IST" name="Default suite" finished-at="2023-05-05T16:41:29 IST" duration-ms="29184">
+  <suite started-at="2023-05-08T16:11:25 IST" name="Default suite" finished-at="2023-05-08T16:11:51 IST" duration-ms="26711">
     <groups>
     </groups>
-    <test started-at="2023-05-05T16:41:00 IST" name="Default test" finished-at="2023-05-05T16:41:29 IST" duration-ms="29184">
+    <test started-at="2023-05-08T16:11:25 IST" name="Default test" finished-at="2023-05-08T16:11:51 IST" duration-ms="26711">
       <class name="com.master_module.MasterModuleTestScripts">
-        <test-method is-config="true" signature="initializeChrome()[pri:0, instance:com.master_module.MasterModuleTestScripts@272113c4]" started-at="2023-05-05T16:41:00 IST" name="initializeChrome" finished-at="2023-05-05T16:41:03 IST" duration-ms="3089" status="PASS">
+        <test-method is-config="true" signature="initializeChrome()[pri:0, instance:com.master_module.MasterModuleTestScripts@5d0a1059]" started-at="2023-05-08T16:11:25 IST" name="initializeChrome" finished-at="2023-05-08T16:11:27 IST" duration-ms="2323" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initializeChrome -->
-        <test-method signature="verifyNavigateFunctionalityInCustomer()[pri:6, instance:com.master_module.MasterModuleTestScripts@272113c4]" started-at="2023-05-05T16:41:04 IST" name="verifyNavigateFunctionalityInCustomer" description="This testcase verifies Admin is able to Navigate to the  Admin Card Page &amp; Customer Page from Customer Create, Customer Details and Customer Update Pages." finished-at="2023-05-05T16:41:29 IST" duration-ms="25971" status="PASS">
+        <test-method signature="verifyAirlineCreateViewExportAsEditFilter()[pri:1, instance:com.master_module.MasterModuleTestScripts@5d0a1059]" started-at="2023-05-08T16:11:27 IST" name="verifyAirlineCreateViewExportAsEditFilter" description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Airlines." finished-at="2023-05-08T16:11:51 IST" duration-ms="24165" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyNavigateFunctionalityInCustomer -->
+        </test-method> <!-- verifyAirlineCreateViewExportAsEditFilter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.master_module.MasterModuleTestScripts@5d0a1059]" started-at="2023-05-08T16:11:51 IST" name="tearDown" finished-at="2023-05-08T16:11:51 IST" duration-ms="163" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
       </class> <!-- com.master_module.MasterModuleTestScripts -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

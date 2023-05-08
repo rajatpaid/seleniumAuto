@@ -73,7 +73,7 @@ public class TestActions {
 
 	public WebElement waitForEle(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
 			return wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -96,7 +96,7 @@ public class TestActions {
 		int randomInt = randomGenerator.nextInt(1000);
 		return randomInt;
 	}
-
+/*
 	public static void waitForPageLoad(WebDriver driver) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
@@ -110,6 +110,7 @@ public class TestActions {
 	    };
 	    wait.until(pageLoaded);
 	}
+	*/
 
 	public static void wait(WebDriver driver) {
 		ChromeOptions x=new ChromeOptions();
