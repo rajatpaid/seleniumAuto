@@ -27,7 +27,7 @@ public class TestBase {
 	public static  WebDriver driver;
 
 
-	@BeforeMethod
+	@BeforeTest
 	public void initializeChrome() throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions option=new ChromeOptions ();
@@ -52,9 +52,22 @@ public class TestBase {
 	public void failed() throws IOException {
 
 		File scrfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrfile, new File("C:\\Users\\naras\\eclipse-workspace\\Product_Frieght_Adda\\test-output\\screnshots\\screenshot1.jpg"));
+		FileUtils.copyFile(scrfile, new File("C:\\Users\\OWNER\\git\\repository\\FSS_Frieght_Adda\\test-output\\screenshot"));
 	}
-	@AfterMethod
+	
+	public void captureScreen(WebDriver driver,String testCaseName) throws IOException
+	{
+		TakesScreenshot ts=(TakesScreenshot) driver;//typecasting 
+		File source =ts.getScreenshotAs(OutputType.FILE);//it will take screen shot 
+		String destinationFile = System.getProperty("user.dir")+"/Screenshots/"+testCaseName+".png";
+		
+		//for fileutils class u need to add dependecy of commans.io
+		FileUtils.copyFile(source,new File(destinationFile));
+		
+
+
+	}
+	@AfterTest
 	public void tearDown() {
 		driver.close();
 

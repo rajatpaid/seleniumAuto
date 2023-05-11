@@ -61,7 +61,12 @@ public class ExpectedValue {
 	public static final String customerCreateText = "Customer Create";
 	public static final String customerLinkText = "Customer";
 	public static final String customerUpadteText = "Customer Update";
-	
+	//Service Type
+	public static final String serviceTypeDetailsText = "Service Type Details";
+	public static final String serviceTypeText = "Service Type";
+	public static final String serviceTypeCreateText = "Service Type Create";
+	public static final String serviceTypeLinkText = "Service Type";
+	public static final String serviceTypeUpadteText = "Service Type Update";
 	/*public static final String admincardtext = "Admin Card";
 	public static final String chargetypedetailstext = "Charge Type Details";
 	public static final String companyname = "krishna Tranport and Logistics company";

@@ -37,6 +37,18 @@ public class Constants {
      public static final String BankBranch="Pune";
      public static final String BeneficiaryName="S";
      public static final String IFSCODE="BOI0011513";
+     public static final String  EnterBranchName ="PUNE";
+     public static final String  EnterLocation="Baner Pune, Maharashtra 411045";
+     public static final String EnterbranchCode="PBR";
+     public static final String Enteremail ="puneranch@gmail.com";
+     public static final String EntergstNumber="07AAGFF2194N1Z1";
+     public static final String  EntergstState="MAHARASHTRA";
+     public static final String  EnterAddress1="Baner Pune";
+     public static final String  EnterAddress2=" Maharashtra 411045";
+     public static final String EnterPhoneNo="976543210";
+     public static final String Entercity="PUNE";
+     public static final String Enterdistrict="Pune";
+     public static final String Enterzipcode ="42220";
     		//Airline details 
      public static final String airlineName = "Indigo airline";
      public static final String airlineIATA = "VMO";
@@ -83,6 +95,11 @@ public class Constants {
     public static final String designation = "Manager";
     public static final String phone = "09800150136";
     public static final String kycdocumentName = "KYC";
+    public static final String kycdocumentPath = "C:\\Users\\OWNER\\Downloads\\KYC DOCUMENT.pdf";
+    //Service Type
+    public static final String serviceTypeName = "PORT TO PORT";
+    public static final String serviceTypeCode = "PTP";
+    
     /* public static final String ExpectedadminroleText = "admin";
      public static final String ExpectedusernameText = "ramesh kk";
      public static final String airlinename = "Indigo airline";

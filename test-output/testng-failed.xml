@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Master Module Test Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Master Module Test(failed)">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)">
     <classes>
       <class name="com.master_module.MasterModuleTestScripts">
         <methods>
           <include name="verifyNavigateFunctionalityInCustomer"/>
           <include name="initializeChrome"/>
+          <include name="verifyCustomerCreateViewExportAsEditFilter"/>
           <include name="verifyBranchesCreateViewExportAsEditFilter"/>
           <include name="verifyNavigateFunctionalityInBranches"/>
+          <include name="verifyServiceTypeCreateViewExportAsEditFilter"/>
           <include name="tearDown"/>
-          <include name="verifyAirlineCreateViewExportAsEditFilter"/>
-          <include name="verifyNavigateFunctionalityInAirlines"/>
-          <include name="verifyCustomer_Create_View_ExportAs_Edit_Filter"/>
           <include name="verifyAdminLoginPage"/>
+          <include name="verifyNavigateFunctionalityInServiceType"/>
         </methods>
       </class> <!-- com.master_module.MasterModuleTestScripts -->
     </classes>
-  </test> <!-- Master Module Test(failed) -->
-</suite> <!-- Failed suite [Master Module Test Suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

@@ -1,5 +1,7 @@
 package com.BasePackage;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Random;
 
@@ -13,9 +15,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.util.Assert;
 import com.google.common.base.Predicate;
+import com.jayway.jsonpath.JsonPath;
 
 
 
@@ -27,6 +31,7 @@ public class TestActions {
 		this.driver=driver;
 	}
 	Logger log = Logger.getLogger(TestActions.class);
+
 
 	public void navigateUrl(String url) {
 		try {
@@ -67,13 +72,13 @@ public class TestActions {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-		//	Assert.fail("Failure to display emailid ");
+			//Assert.fail("Failure to display emailid ");
 		}		
 	}
 
 	public WebElement waitForEle(WebElement element) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(500));
 			return wait.until(ExpectedConditions.visibilityOf(element));
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -91,11 +96,24 @@ public class TestActions {
 		
 
 	}
-	public int getRandomInt( ) {
+	public void getRandomInt( ) {
 		Random randomGenerator = new Random(); 
 		int randomInt = randomGenerator.nextInt(1000);
-		return randomInt;
+		
+		System.out.println(randomInt);
 	}
+	
+
+	
+	public static String jsonResource(String element) throws IOException {
+		File jsonfile= new File("C:\\Users\\OWNER\\git\\AutomationFrameworkCode1\\src\\main\\java\\com\\jsondata\\data.json");
+		Object data=JsonPath.read(jsonfile,"$."+element);
+		return element;
+	
+	}
+	
+ 
+
 /*
 	public static void waitForPageLoad(WebDriver driver) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
@@ -112,8 +130,12 @@ public class TestActions {
 	}
 	*/
 
-	public static void wait(WebDriver driver) {
-		ChromeOptions x=new ChromeOptions();
-		x.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-	}
+	
+//	public void click(WebElement element, long waitTimeInSeconds) {
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTimeInSeconds));	
+//		WebElement elements=null;
+//		elements=wait.until(ExpectedConditions.elementToBeClickable(element));
+//		elements.click();
+//	}
+
 }

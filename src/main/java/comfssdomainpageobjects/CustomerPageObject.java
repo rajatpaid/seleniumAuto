@@ -265,11 +265,14 @@ public class CustomerPageObject extends TestActions{
 	@FindBy(xpath="(//button[@type='submit'])[1]")
 	WebElement saveAll;
 	
-	@FindBy(xpath="(//*[text()='KYC Status'])[2]")
+	@FindBy(xpath="//span[text()='KYC Status']//parent :: button")
 	WebElement kycStatus;
 	
-	@FindBy(id="kycStatus")
+	@FindBy(xpath="(//div[@class='ant-select-selection__rendered'])[2]")
 	WebElement dropKYCStatus;
+	
+	@FindBy(xpath="//li[text()='APPROVED']")
+	WebElement approved;
 	
 	@FindBy(id="name")
 	WebElement txtdocumentName;
@@ -320,35 +323,39 @@ public class CustomerPageObject extends TestActions{
 	}
 	
 	
-	public void downloadAirlineInEXCEL()  {
+	public void downloadCustomerInEXCEL()  {
 		this.click(exportAs);
 		this.click(excel);
 		this.click(excelgeneratedSuccessfully_Message);
 	}
 	
-	public void downloadAirlineInCSV() throws InterruptedException {
+	public void downloadCustomerInCSV() throws InterruptedException {
 		this.click(exportAs);
 		this.click(csv);
 		this.click(csvgeneratedSuccessfully_Message);
 	}
 	
-	public void clickOnViewIcon(){
-		this.waitForEle(viewIcon);
+	public void clickOnViewIcon() throws InterruptedException{
+		Thread.sleep(2000);
+		//this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
-	public void clickOnEditIcon(){
+	public void clickOnEditIcon() throws InterruptedException{
+		Thread.sleep(2000);
 		this.click(editIcon);
 		this.click(acceptAlert);
 }
 
-	public void viewCustomer(){
-		this.waitForEle(viewIcon);
+	public void viewCustomer() throws InterruptedException{
+		Thread.sleep(2000);
+		//this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
-	public  void editCustomer(String mobNo){
-		this.waitForEle(editIcon);
+	public  void editCustomer(String mobNo) throws InterruptedException{
+		Thread.sleep(2000);
+		//this.waitForEle(editIcon);
 		this.click(editIcon);
 		this.click(acceptAlert);
 		mobileNumber.click();
@@ -363,6 +370,21 @@ public class CustomerPageObject extends TestActions{
 		this.click(okFilter);
 		this.click(reloadSymbol);
 	}
+	
+	public void uploadKYCDocument(String name,String path) throws InterruptedException {
+		Thread.sleep(2000);
+		this.click(viewIcon);
+		this.click(acceptAlert);	
+		this.click(kycStatus);
+		this.click(dropKYCStatus);
+		this.click(approved);	
+		
+		this.sendkeys(txtdocumentName, name);
+		Thread.sleep(2000);
+		this.sendkeys(upload,path);
+		this.click(saveKYC);	
+	}
+	
 	
 	public void clickOnSaveButton() {
 		this.click(save_button);
@@ -493,28 +515,28 @@ public class CustomerPageObject extends TestActions{
 	}
 	
 
-public String isCustomerDetailsTextDisplayed() {
-	String customerDetailsText=customerdetailstext.getText();
-	return customerDetailsText;
-}
+  public String isCustomerDetailsTextDisplayed() {
+	  String customerDetailsText=customerdetailstext.getText();
+	  return customerDetailsText;
+  }
 
-public String isCustomerLinkTextDisplayed() {
-	String customerLinkText=customerLinkOnBreadcrumb.getText();
-	return customerLinkText;
-}
-public String isCustomerTextDispleyed() {
-	String customerText=customertext.getText();
-	return customerText;
-}
+  public String isCustomerLinkTextDisplayed() {
+	  String customerLinkText=customerLinkOnBreadcrumb.getText();
+	  return customerLinkText;
+  }
+  public String isCustomerTextDispleyed() {
+	  String customerText=customertext.getText();
+	  return customerText;
+  }
 
-public String isCustomerUpdateTextDisplayed() {
-	String 	customerUpadateText= customerUpdatetext.getText();
-	return customerUpadateText;
-}
-public String isCustomerCreateTextDispleyed() {
-	String customerCreateText=customerCreatetext.getText();
-	return customerCreateText;
-}
+  public String isCustomerUpdateTextDisplayed() {
+	  String 	customerUpadateText= customerUpdatetext.getText();
+	  return customerUpadateText;
+  }
+  public String isCustomerCreateTextDispleyed() {
+	  String customerCreateText=customerCreatetext.getText();
+	  return customerCreateText;
+  }
 		
 	
 	

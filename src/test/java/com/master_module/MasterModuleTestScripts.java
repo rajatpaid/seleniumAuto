@@ -2,10 +2,12 @@ package com.master_module;
 
 import java.time.Duration;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.BasePackage.TestActions;
@@ -17,13 +19,16 @@ import comfssdomainpageobjects.AdminSignInPageObjects;
 import comfssdomainpageobjects.AirLinePageObject;
 import comfssdomainpageobjects.BranchesPageObject;
 import comfssdomainpageobjects.CustomerPageObject;
+import comfssdomainpageobjects.ServiceTypeObjects;
 
+@Listeners({com.master_module.Itestlistners.class})
 public class MasterModuleTestScripts extends TestBase{
 	
 	public AdminSignInPageObjects signinpage;
 	public  AirLinePageObject airline;
 	public BranchesPageObject branch;
 	public CustomerPageObject customer ;
+	public ServiceTypeObjects serviceType;
 	
 	@Test(priority=0,description="This testcase verifies login functionality",enabled=true)
 	public void verifyAdminLoginPage() {
@@ -48,7 +53,8 @@ public class MasterModuleTestScripts extends TestBase{
 		signinpage= new AdminSignInPageObjects(driver);
     	signinpage.adminLogin();
 		airline = new AirLinePageObject(driver);
-		airline.openAirlineCard();
+		airline.clickOnMasterModule();
+		airline.clickOnAirlineCard();
 		Assert.assertEquals(ExpectedValue.createNewButtonText,airline.isCreateNewButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.exportAsButtonText,airline.isExportAsButtonTextDisplayed());
 		Assert.assertEquals(ExpectedValue.filterButtonText,airline.isFilterButtonTextDisplayed());
@@ -72,6 +78,7 @@ public class MasterModuleTestScripts extends TestBase{
 //		Assert.assertEquals(ExpectedValue.editButtonText,airline.isEditButtonTextDisplayed());
 //		Assert.assertEquals(ExpectedValue.cancelButtonText,airline.isCancelButtonTextDisplayed());
 		airline.clickOnCancelButton();
+		
 		airline.viewAirline();
 		Assert.assertEquals(ExpectedValue.airlineDetailsText,airline.isAirlinesDetailsTextDisplayed());  
 		Assert.assertEquals(ExpectedValue.editButtonText,airline.isEditButtonTextDisplayed());
@@ -84,8 +91,10 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.expectedEXCELDownloadSuccessfullMessage,airline.isEXCELgeneratedSuccessfullyMessageDisplayed());
 		airline.filterAirline(Constants.airlineName);	
 	}
+	/*
 	
-    @Test(priority=2,description="This testcase verifies Admin is able to Navigate to the  Admin Card Page & Airline Page from Airline Create, Airline Details and Airline Update Pages.",enabled=true)
+    @Test(priority=2,description="This testcase verifies Admin is able to Navigate to the  Admin"
+    		+ " Card Page & Airline Page from Airline Create, Airline Details and Airline Update Pages.",enabled=true)
 	
 	public void verifyNavigateFunctionalityInAirlines() throws InterruptedException{
     	signinpage= new AdminSignInPageObjects(driver);
@@ -127,6 +136,14 @@ public class MasterModuleTestScripts extends TestBase{
 		Assert.assertEquals(ExpectedValue.airlinesText,airline.isAirlinesTextDispleyed());
 	}
 	
+    @Test
+    public void navigateFunctionalityInAirlines() throws InterruptedException{
+    	signinpage= new AdminSignInPageObjects(driver);
+    	signinpage.adminLogin();
+		airline = new AirLinePageObject(driver);
+		airline.navigate();
+    }
+    
     @Test(priority=3,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Branches.",enabled=true)
 	  public void verifyBranchesCreateViewExportAsEditFilter() throws InterruptedException {
       signinpage= new AdminSignInPageObjects(driver);
@@ -160,15 +177,12 @@ public class MasterModuleTestScripts extends TestBase{
 //		Assert.assertEquals(ExpectedValue.editButtonText,branch.isEditButtonTextDisplayed());
 //		Assert.assertEquals(ExpectedValue.cancelButtonText,branch.isCancelButtonTextDisplayed());
 	    branch.clickOnCancelButton();
-		Thread.sleep(2000);
 		branch.viewBranch();
 		Assert.assertEquals(ExpectedValue.branchDetailsText,branch.isBranchDetailsTextDisplayed());  
 		Assert.assertEquals(ExpectedValue.editButtonText,branch.isEditButtonTextDisplayed());
-		 Assert.assertEquals(ExpectedValue.closeButtonText, branch.isCloseButtonTextDisplayed()); 
+		Assert.assertEquals(ExpectedValue.closeButtonText, branch.isCloseButtonTextDisplayed()); 
 		branch.clickOnCloseButton();
-		Thread.sleep(2000);
 		branch.editBranch(Constants.branchloaction);
-		Thread.sleep(2000);
 		Assert.assertEquals(ExpectedValue.expectedUpdateSuccessfullMessage,branch.isUpdatedSuccessfullyMessageDisplayed());
 		branch.clickOnCloseButton();
 		branch.downloadBranchesInEXCEL();
@@ -195,14 +209,12 @@ public class MasterModuleTestScripts extends TestBase{
    		Assert.assertEquals(ExpectedValue.adminCardText,branch.isAdminCardTextDisplayed());
    		branch.clickOnBranchCard();
    		Assert.assertEquals(ExpectedValue.branchesText,branch.isBranchesTextDispleyed());
-   		Thread.sleep(2000);
    		branch.clickOnViewIcon();
    		Assert.assertEquals(ExpectedValue.branchDetailsText,branch.isBranchDetailsTextDisplayed()); 
    		branch.clickOnMasterLinkOnBreadcrumb();
    		Assert.assertEquals(ExpectedValue.adminCardText,branch.isAdminCardTextDisplayed());
    		branch.clickOnBranchCard();
    		Assert.assertEquals(ExpectedValue.branchesText,branch.isBranchesTextDispleyed());
-   		Thread.sleep(2000);
    		branch.clickOnEditIcon();
    		Assert.assertEquals(ExpectedValue.branchUpdatetext,branch.isBranchUpdateTextDisplayed());
    		branch.clickOnMasterLinkOnBreadcrumb();
@@ -212,57 +224,16 @@ public class MasterModuleTestScripts extends TestBase{
    		branch.clickOnCreateNew();
    		Assert.assertEquals(ExpectedValue.branchCreateText,branch.isBranchCreateTextDispleyed());
    		branch.clickOnBranchesLinkOnBreadcrumb();
-   		Thread.sleep(2000);
    		branch.clickOnEditIcon();
    		Assert.assertEquals(ExpectedValue.branchUpdatetext,branch.isBranchUpdateTextDisplayed());
    		branch.clickOnBranchesLinkOnBreadcrumb();
    		Assert.assertEquals(ExpectedValue.branchesText,branch.isBranchesTextDispleyed());
    	}
        
-   @Test(priority=6,description="This testcase verifies Admin is able to Navigate to the  Admin Card Page & Customer Page from Customer Create, Customer Details and Customer Update Pages.",enabled=true)
-   	public void verifyNavigateFunctionalityInCustomer() throws InterruptedException{
-	    signinpage= new AdminSignInPageObjects(driver);
-   	    signinpage.adminLogin();
-   		customer = new CustomerPageObject(driver);
-   		customer.clickOnMasterModule(); 
-   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
-   		customer.clickOnCustomerCard();
-   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
-   		customer.clickOnMasterLinkOnBreadcrumb();
-   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
-   		customer.clickOnCustomerCard();
-   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
-   		customer.clickOnCreateNew();
-   		Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
-   		customer.clickOnMasterLinkOnBreadcrumb();
-   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
-   		customer.clickOnCustomerCard();
-   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
-   		Thread.sleep(2000);
-   		customer.clickOnViewIcon();
-   		Assert.assertEquals(ExpectedValue.customerDetailsText,customer.isCustomerDetailsTextDisplayed()); 
-   		customer.clickOnMasterLinkOnBreadcrumb();
-   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
-   		customer.clickOnCustomerCard();
-   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
-   		Thread.sleep(2000);
-   		customer.clickOnEditIcon();
-   		Assert.assertEquals(ExpectedValue.customerUpadteText,customer.isCustomerUpdateTextDisplayed());
-   		customer.clickOnMasterLinkOnBreadcrumb();
-   		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
-   		customer.clickOnCustomerCard();
-   		customer.clickOnCreateNew();
-   		Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
-   		customer.clickOnCustomerLinkOnBreadcrumb();
-   		Thread.sleep(2000);
-   		customer.clickOnEditIcon();
-   		Assert.assertEquals(ExpectedValue.customerUpadteText,customer.isCustomerUpdateTextDisplayed());
-   		customer.clickOnCustomerLinkOnBreadcrumb();
-   		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
-   	}
    
-   @Test(priority=7,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Customer.",enabled=true)
-	  public void verifyCustomer_Create_View_ExportAs_Edit_Filter() throws InterruptedException {
+   
+   @Test(priority=6,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Customer.",enabled=true)
+	  public void verifyCustomerCreateViewExportAsEditFilter() throws InterruptedException {
 	   signinpage= new AdminSignInPageObjects(driver);
   	   signinpage.adminLogin();
 	  customer = new CustomerPageObject(driver);
@@ -282,12 +253,110 @@ public class MasterModuleTestScripts extends TestBase{
 	  customer.enterClientdetails(Constants.clientName, Constants.natureOfBussiness, Constants.commodity, Constants.creditedLimit , 
 			  Constants.paymentTerm,Constants.email, Constants.faxNo, Constants.website, Constants.vatNo, Constants.mobileNo, 
 			  Constants.gstNo, Constants.remark, Constants.iecCODE);
-	 
+	  customer.enterClientAddressdetails(Constants.adressLine1, Constants.city, Constants.phoneNo, Constants.zipCODE);
+	  customer.enterClientContactdetails(Constants.firstNAME, Constants.lastNAME,Constants.contactEmail, Constants.designation, Constants.phone);
+	  customer.clickOnSaveButton();
+	  
+//	  Assert.assertEquals(ExpectedValue.expectedCreatedSuccessfullMessage,customer.isCreatedSuccessfullyMessageDisplayed());  
+//	  Assert.assertEquals(ExpectedValue.customerDetailsText,customer.isCustomerDetailsTextDisplayed());  
+//	  Assert.assertEquals(ExpectedValue.editButtonText,customer.isEditButtonTextDisplayed());
+//	  Ass.assertEquals(ExpectedValue.cancelButtonText,customer.isCancelButtonTextDisplayed());
+	  customer.clickOnCancelButton();
+	//  customer.uploadKYCDocument(Constants.kycdocumentName,Constants.kycdocumentPath);
+	  customer.viewCustomer();
+	 Assert.assertEquals(ExpectedValue.customerDetailsText,customer.isCustomerDetailsTextDisplayed());  
+	  Assert.assertEquals(ExpectedValue.editButtonText,customer.isEditButtonTextDisplayed());
+	  Assert.assertEquals(ExpectedValue.closeButtonText, customer.isCloseButtonTextDisplayed()); 
+	  customer.clickOnCloseButton();
+	  customer.editCustomer(Constants.mobileNo);
+	  Assert.assertEquals(ExpectedValue.expectedUpdateSuccessfullMessage,customer.isUpdatedSuccessfullyMessageDisplayed());
+	  customer.clickOnCloseButton();
+	  customer.downloadCustomerInEXCEL();
+	  Assert.assertEquals(ExpectedValue.expectedEXCELDownloadSuccessfullMessage,customer.isEXCELgeneratedSuccessfullyMessageDisplayed());
+	  customer.filterCustomer(Constants.clientName);
 	  
 	
-    
-  
-	
-	
-   }	
+   }
+   
+   @Test(priority=7,description="This testcase verifies Admin is able to Navigate to the  Admin Card Page & Customer Page from Customer Create, Customer Details and Customer Update Pages.",enabled=true)
+  	public void verifyNavigateFunctionalityInCustomer() throws InterruptedException{
+	    signinpage= new AdminSignInPageObjects(driver);
+  	    signinpage.adminLogin();
+  		customer = new CustomerPageObject(driver);
+  		customer.clickOnMasterModule(); 
+  		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+  		customer.clickOnCustomerCard();
+  		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+  		customer.clickOnMasterLinkOnBreadcrumb();
+  		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+  		customer.clickOnCustomerCard();
+  		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+  		customer.clickOnCreateNew();
+  		Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
+  		customer.clickOnMasterLinkOnBreadcrumb();
+  		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+  		customer.clickOnCustomerCard();
+  		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+  		customer.clickOnViewIcon();
+  		Assert.assertEquals(ExpectedValue.customerDetailsText,customer.isCustomerDetailsTextDisplayed()); 
+  		customer.clickOnMasterLinkOnBreadcrumb();
+  		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+  		customer.clickOnCustomerCard();
+  		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+  		customer.clickOnEditIcon();
+  		Assert.assertEquals(ExpectedValue.customerUpadteText,customer.isCustomerUpdateTextDisplayed());
+  		customer.clickOnMasterLinkOnBreadcrumb();
+  		Assert.assertEquals(ExpectedValue.adminCardText,customer.isAdminCardTextDisplayed());
+  		customer.clickOnCustomerCard();
+  		customer.clickOnCreateNew();
+  		Assert.assertEquals(ExpectedValue.customerCreateText,customer.isCustomerCreateTextDispleyed());
+  		customer.clickOnCustomerLinkOnBreadcrumb();
+  		customer.clickOnEditIcon();
+  		Assert.assertEquals(ExpectedValue.customerUpadteText,customer.isCustomerUpdateTextDisplayed());
+  		customer.clickOnCustomerLinkOnBreadcrumb();
+  		Assert.assertEquals(ExpectedValue.customerText,customer.isCustomerTextDispleyed());
+  	}
+   
+   @Test(priority=8,description="This testcase verifies Admin is able to Create,View,ExportAs,Edit,Filter the Customer.",enabled=true)
+   public void verifyServiceTypeCreateViewExportAsEditFilter() throws InterruptedException {
+	   signinpage= new AdminSignInPageObjects(driver);
+	   signinpage.adminLogin();
+	   serviceType = new ServiceTypeObjects(driver);
+	   serviceType.clickOnMasterModule(); 
+	   serviceType.clickOnServiceTypeCard(); 
+	   Assert.assertEquals(ExpectedValue.createNewButtonText,serviceType.isCreateNewButtonTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.exportAsButtonText,serviceType.isExportAsButtonTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.filterButtonText,serviceType.isFilterButtonTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.masterlinkText,serviceType.isMasterLinkTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.serviceTypeLinkText,serviceType.isServiceTypeLinkTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.serviceTypeText,serviceType.isServiceTypeTextDispleyed());
+	   serviceType.clickOnCreateNew();
+	   Assert.assertEquals(ExpectedValue.serviceTypeCreateText,serviceType.isServiceTypeCreateTextDispleyed());
+	   Assert.assertEquals(ExpectedValue.saveButtonText,serviceType.isSaveButtonTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.cancelButtonText,serviceType.isCancelButtonTextDisplayed());
+	   serviceType.createServiceType(Constants.serviceTypeName,Constants.serviceTypeCode);
+
+//	   Assert.assertEquals(ExpectedValue.expectedCreatedSuccessfullMessage,serviceType.isCreatedSuccessfullyMessageDisplayed());  
+//	   Assert.assertEquals(ExpectedValue.serviceTypeDetailsText,serviceType.isServiceTypeDetailsTextDisplayed());  
+//	   Assert.assertEquals(ExpectedValue.editButtonText,serviceType.isEditButtonTextDisplayed());
+//	   Assert.assertEquals(ExpectedValue.cancelButtonText,serviceType.isCancelButtonTextDisplayed());
+	   serviceType.clickOnCancelButton();
+	   serviceType.viewServiceType();
+	   Assert.assertEquals(ExpectedValue.serviceTypeDetailsText,serviceType.isServiceTypeDetailsTextDisplayed());  
+	   Assert.assertEquals(ExpectedValue.editButtonText,serviceType.isEditButtonTextDisplayed());
+	   Assert.assertEquals(ExpectedValue.closeButtonText, serviceType.isCloseButtonTextDisplayed()); 
+	   serviceType.clickOnCloseButton();
+	   serviceType.editServiceType(Constants.serviceTypeCode);
+	   Assert.assertEquals(ExpectedValue.expectedUpdateSuccessfullMessage,serviceType.isUpdatedSuccessfullyMessageDisplayed());
+	   serviceType.clickOnCloseButton();
+	   serviceType.downloadServiceTypeInEXCEL();
+	   Assert.assertEquals(ExpectedValue.expectedEXCELDownloadSuccessfullMessage,serviceType.isEXCELgeneratedSuccessfullyMessageDisplayed());
+	   serviceType.filterServiceType(Constants.serviceTypeName);
+}
+
+   */
+   
+   
+   
+   
 }

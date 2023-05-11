@@ -58,7 +58,7 @@ public class BranchesPageObject extends TestActions {
 	@FindBy(xpath="//div[@class='ant-message-custom-content ant-message-success']")
 	public WebElement updatedSuccessfully_Message;
 	
-	@FindBy(xpath="//i[@class='anticon anticon-eye']")
+	@FindBy(xpath="(//i[@aria-label='icon: eye'])[1]")
 	public WebElement viewIcon;
 	
 	@FindBy(xpath="//button[@class='ant-btn ant-btn-primary ant-btn-round']")
@@ -231,23 +231,27 @@ public class BranchesPageObject extends TestActions {
 		this.click(csvgeneratedSuccessfully_Message);
 	}
 	
-	public void clickOnViewIcon(){
+	public void clickOnViewIcon() throws InterruptedException{
+		Thread.sleep(2000);
 		this.click(viewIcon);
 		this.click(acceptAlert);
 	}
 	
 	
-	public void clickOnEditIcon() {
+	public void clickOnEditIcon() throws InterruptedException {
+		Thread.sleep(2000);
 		this.click(editIcon);
 		this.click(acceptAlert);
     }
-	public void viewBranch(){
-		this.waitForEle(viewIcon);
+	public void viewBranch() throws InterruptedException{
+		Thread.sleep(2000);
+		//this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
-	public  void editBranch(String code){
-		this.waitForEle(editIcon);
+	public  void editBranch(String code) throws InterruptedException{
+		Thread.sleep(2000);
+		//this.waitForEle(editIcon);
 		this.click(editIcon);
 		this.click(acceptAlert);
 		branch_location.click();

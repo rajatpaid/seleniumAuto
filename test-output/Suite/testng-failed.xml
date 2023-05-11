@@ -7,13 +7,13 @@
         <methods>
           <include name="verifyNavigateFunctionalityInCustomer"/>
           <include name="initializeChrome"/>
+          <include name="verifyCustomerCreateViewExportAsEditFilter"/>
           <include name="verifyBranchesCreateViewExportAsEditFilter"/>
           <include name="verifyNavigateFunctionalityInBranches"/>
+          <include name="verifyServiceTypeCreateViewExportAsEditFilter"/>
           <include name="tearDown"/>
-          <include name="verifyAirlineCreateViewExportAsEditFilter"/>
-          <include name="verifyNavigateFunctionalityInAirlines"/>
-          <include name="verifyCustomer_Create_View_ExportAs_Edit_Filter"/>
           <include name="verifyAdminLoginPage"/>
+          <include name="verifyNavigateFunctionalityInServiceType"/>
         </methods>
       </class> <!-- com.master_module.MasterModuleTestScripts -->
     </classes>

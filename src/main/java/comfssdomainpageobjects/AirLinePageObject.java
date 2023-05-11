@@ -5,8 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.BasePackage.TestActions;
+import com.UtilitiesClasses.ExpectedValue;
 
 
 
@@ -152,10 +154,13 @@ public class AirLinePageObject extends TestActions {
 
 	public void clickOnMasterModule() {
 		this.click(master_Module);
+		
 	}
-	public void clickOnAirlineCard() {
+	public void clickOnAirlineCard() throws InterruptedException {
 		this.click(airline_Card);
+		Thread.sleep(2000);
 	}
+	
 	public void openAirlineCard() {
 		this.click(master_Module);
 		this.click(airline_Card);
@@ -182,32 +187,33 @@ public class AirLinePageObject extends TestActions {
 	}
 	public void clickOnViewIcon() throws InterruptedException{
 		Thread.sleep(2000);
-		this.waitForEle(viewIcon);
+		//this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
 	public void clickOnEditIcon() throws InterruptedException{
 		Thread.sleep(2000);
+		//this.waitForEle(editIcon);
 		this.click(editIcon);
 		this.click(acceptAlert);
 }
 	
 	public void viewAirline() throws InterruptedException{
-		Thread.sleep(2000);
-		this.waitForEle(viewIcon);
+		Thread.sleep(3000);
+		//this.waitForEle(viewIcon);
 		this.click(viewIcon);
 		this.click(acceptAlert);	
 	}
 	public  void editAirline(String iata) throws InterruptedException{
 		Thread.sleep(2000);
-		this.waitForEle(editIcon);
+		//this.waitForEle(editIcon);
 		this.click(editIcon);
 		this.click(acceptAlert);
 		airline_iata.click();
 		airline_iata.clear();
 	    this.sendkeys(airline_iata,iata);
 		this.click(update_button);
-		Thread.sleep(2000);
+		
 }
 	public void filterAirline(String name) {
 		this.click(filter_button);
@@ -377,8 +383,38 @@ public class AirLinePageObject extends TestActions {
 		
 	}
 
+	public void navigate() throws InterruptedException {
+		this.click(master_Module);
+		this.click(airline_Card);
+		this.click(masterLinkOnBreadcrumb);
+		this.click(airline_Card);
+		this.click(createNew);
+		this.click(masterLinkOnBreadcrumb);
+		this.click(airline_Card);
+		this.click(viewIcon);
+		this.click(masterLinkOnBreadcrumb);
+		this.click(airline_Card);
+		this.click(editIcon);
+		this.click(masterLinkOnBreadcrumb);
+		this.click(airline_Card);
+		this.click(createNew);
+		this.click(airlinesLinkOnBreadcrumb);
+		this.click(editIcon);
+		this.click(airlinesLinkOnBreadcrumb);
 	
 		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+	}
 }
 
 
