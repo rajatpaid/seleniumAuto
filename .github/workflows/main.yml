@@ -32,13 +32,18 @@ jobs:
           name: Extent Reports
           path: ./extentReport.html
 
+  send-email:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Get artifact URL
         id: get_artifact_url
         run: echo "::set-output name=artifact_url::$(echo ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/extentReport.html)"
 
-      - name: Print artifact URL
-        run: echo "Artifact URL:${{ steps.get_artifact_url.outputs.artifact_url }}"
-        
       - name: Send email
         uses: dawidd6/action-send-mail@v3
         with:
@@ -46,10 +51,10 @@ jobs:
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          from: rajat.paidalwar@p99soft.com 
+          from: rajat.paidalwar@p99soft.com
           subject: Extent Reports Artifact
           body: |
             Here is the artifact URL:
 
             ${{ steps.get_artifact_url.outputs.artifact_url }}
-          to: rajat.paidalwar150@gmail.com  
+          to: rajat.paidalwar@p99soft.com
