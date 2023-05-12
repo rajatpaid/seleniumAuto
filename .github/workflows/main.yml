@@ -27,7 +27,7 @@ jobs:
           # You can generate the Extent Reports HTML file using your preferred programming language and the Extent Reports library
       - name: Run Tests
         run: |
-           mvn test -Dtest=com.master_module.MasterModuleTestScripts
+           mvn test 
       - name: Upload Extent Reports artifact
         uses: actions/upload-artifact@v2
         with:
