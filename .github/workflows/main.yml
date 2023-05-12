@@ -38,3 +38,17 @@ jobs:
 
       - name: Print artifact URL
         run: echo "Artifact URL:${{ steps.get_artifact_url.outputs.artifact_url }}"
+        
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: email-smtp.ap-south-1.amazonaws.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Extent Reports Artifact
+          body: |
+            Here is the artifact URL:
+
+            ${{ steps.get_artifact_url.outputs.artifact_url }}
+          to: rajat.paidalwar@p99soft.com  
