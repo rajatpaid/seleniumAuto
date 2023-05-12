@@ -25,7 +25,9 @@ jobs:
           mvn clean install
           # Build and test your project here
           # You can generate the Extent Reports HTML file using your preferred programming language and the Extent Reports library
-
+      - name: Run Tests
+        run: |
+           mvn test -Dtest=MasterModuleTestScripts
       - name: Upload Extent Reports artifact
         uses: actions/upload-artifact@v2
         with:
@@ -44,17 +46,17 @@ jobs:
         id: get_artifact_url
         run: echo "::set-output name=artifact_url::$(echo ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/extentReport.html)"
 
-      - name: Send email
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: email-smtp.ap-south-1.amazonaws.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          from: "Rajat <rajat.paidalwar@p99soft.com>"
-          subject: Extent Reports Artifact
-          body: |
-            Here is the artifact URL:
+#       - name: Send email
+#         uses: dawidd6/action-send-mail@v3
+#         with:
+#           server_address: email-smtp.ap-south-1.amazonaws.com
+#           server_port: 587
+#           username: ${{ secrets.EMAIL_USERNAME }}
+#           password: ${{ secrets.EMAIL_PASSWORD }}
+#           from: "Rajat <rajat.paidalwar@p99soft.com>"
+#           subject: Extent Reports Artifact
+#           body: |
+#             Here is the artifact URL:
 
-            ${{ steps.get_artifact_url.outputs.artifact_url }}
-          to: rajat.paidalwar@p99soft.com
+#             ${{ steps.get_artifact_url.outputs.artifact_url }}
+#           to: rajat.paidalwar@p99soft.com
