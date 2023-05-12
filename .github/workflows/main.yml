@@ -51,7 +51,7 @@ jobs:
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          from: rajat.paidalwar@p99soft.com
+          from: "Rajat <rajat.paidalwar@p99soft.com>"
           subject: Extent Reports Artifact
           body: |
             Here is the artifact URL:
