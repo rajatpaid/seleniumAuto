@@ -3,7 +3,7 @@ name: Extent Reports
 on:
   push:
     branches:
-      - cicd_fro-link
+      - cicd_for-link
 
 jobs:
   build:
