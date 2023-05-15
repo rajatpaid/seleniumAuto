@@ -44,7 +44,7 @@ jobs:
 
       - name: Get artifact URL
         id: get_artifact_url
-        run: echo "::set-output name=artifact_url::$(echo ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/extentReport.html)"
+        run: echo "::set-output name=artifact_url::$(echo ${{ github.server_url }}/raw/${{ github.repository }}/$(echo ${{ github.sha }}/extentReport.html))"
 
       - name: Send email
         uses: dawidd6/action-send-mail@v3
